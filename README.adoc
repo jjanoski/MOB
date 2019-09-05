@@ -3,6 +3,6 @@ Mobile Oriented Biped
 
 == Getting started
 
-===
+---
 git clone repo
-===
+---
