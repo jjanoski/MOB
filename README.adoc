@@ -6,3 +6,17 @@ Mobile Oriented Biped
 ----
 git clone repo
 ----
+
+----
+Generate ssh key
+
+ssh-keygen
+
+copy id_rsa.pub
+
+go to github, click on profile>setting>ssh>new key
+----
+
+----
+git checkout -b devel
+----
