@@ -39,3 +39,17 @@ git commit -m "<type what was changed here>"
 git push
 ----
 
+
+== Check Mob Rviz
+
+Type the following command to see mob the robot in rviz
+
+----
+roslaunch mob mob_rviz.launch model:=mob_robot.urdf
+----
+
+Setup an alias(command shortcut) by opening adding command to the end of .bashrc file
+
+----
+alias mobr='roslaunch mob mob_rviz.launch model:=mob_robot.urdf'
+----

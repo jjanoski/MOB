@@ -1,4 +1,0 @@
-<launch>
-  <node pkg="mob" type="node" name="mob_launch" />
-  <include file="$(find mob)/home/jiovanni/catkin_ws/mob/mob_launch.launch" />
-</launch>
