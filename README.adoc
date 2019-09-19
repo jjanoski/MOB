@@ -5,9 +5,7 @@ Mobile Oriented Biped
 
 
 Generate ssh key using open-ssh, this is included in ubuntu 18.04
-
-'''
-
+[%hardbreaks]
 Check to see if a file .ssh exists in home directory
 
 ----
@@ -35,12 +33,9 @@ ssh-keygen
 ----
 
 Now you should see two file that were generated copy the id_rsa.pub with gedit, or anyother text editor.
-
-'''
-
+[%hardbreaks]
 Go to your Github account, click on profile>setting>ssh>new key
-
-'''
+[%hardbreaks]
 Paste the id_rsa.pub content into profile ssh and give it a name
 
 ----
@@ -89,13 +84,9 @@ git push
 == Merge branch to Devel
 
 This require a peer review to be approved
-
-''''
-
+[%hardbreaks]
 Make sure all your commits have been pushed
-
-''''
-
+[%hardbreaks]
 Go to Github and create a merge request
 
 == Check Mob Rviz
