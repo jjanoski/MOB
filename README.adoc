@@ -3,25 +3,72 @@ Mobile Oriented Biped
 
 == Getting started
 
+
+Generate ssh key using open-ssh, this is included in ubuntu 18.04
+
+'''
+
+Check to see if a file .ssh exists in home directory
+
 ----
-git clone repo
+cd
 ----
 
 ----
-Generate ssh key
+ls -la | grep .ssh
+----
 
+If this directory does not exist create it in your home directory
+
+----
+mkdir .ssh
+----
+
+Go into the .ssh file and generate a ssh key
+
+----
+cd .ssh
+----
+
+----
 ssh-keygen
+----
 
-copy id_rsa.pub
+Now you should see two file that were generated copy the id_rsa.pub with gedit, or anyother text editor.
 
-go to github, click on profile>setting>ssh>new key
+'''
+
+Go to your Github account, click on profile>setting>ssh>new key
+
+'''
+Paste the id_rsa.pub content into profile ssh and give it a name
+
+----
+git clone https://github.com/jjanoski/MOB.git
 ----
 
 ----
 git checkout -b devel
 ----
 
-== commit changes
+== Creating new feature
+
+----
+git branch feature/<name of feature your working on>
+----
+
+----
+git checkout -b feature/<name of feature your working on>
+----
+
+Double check that your properly checked out the branch
+
+----
+git status
+----
+
+
+== Commit Changes to feature branch
 
 ----
 git status
@@ -39,6 +86,17 @@ git commit -m "<type what was changed here>"
 git push
 ----
 
+== Merge branch to Devel
+
+This require a peer review to be approved
+
+''''
+
+Make sure all your commits have been pushed
+
+''''
+
+Go to Github and create a merge request
 
 == Check Mob Rviz
 
