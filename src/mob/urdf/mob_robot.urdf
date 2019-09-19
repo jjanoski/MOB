@@ -6,9 +6,24 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-          <box size="0.5 0.5 0.25"/>
+          <box size="0.125 0.062 0.02"/>
       </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
     </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+          <box size="0.125 0.062 0.02" />
+      </geometry>
+    </collision>
+    <!--Mass-->
+    <inertial>
+      <mass value="2"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
   </link>
 
 </robot>
