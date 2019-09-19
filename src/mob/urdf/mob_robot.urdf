@@ -1,8 +1,8 @@
 <?xml version='1.0'?>
 <robot name="mob_robot">
 
-  <!-- Left Foot is Base Link -->
-  <link name="left_foot">
+  <!-- Base Link is left foot-->
+  <link name="base_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
