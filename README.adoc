@@ -43,7 +43,19 @@ git clone https://github.com/jjanoski/MOB.git
 ----
 
 ----
-git checkout -b devel
+git checkout devel
+----
+
+----
+mv MOB catkin_ws
+----
+
+----
+rm -rf build devel
+----
+
+----
+catkin_make
 ----
 
 == Creating new feature
@@ -74,7 +86,7 @@ git add <files listed>
 ----
 
 ----
-git commit -m "<type what was changed here>"
+git commit -m  "<type what was changed here>"
 ----
 
 ----
