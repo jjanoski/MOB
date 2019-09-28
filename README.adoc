@@ -46,8 +46,6 @@ git clone https://github.com/jjanoski/MOB.git
 git checkout devel
 ----
 
-This process will be depreicated with new build method
-
 ----
 mv MOB catkin_ws
 ----
