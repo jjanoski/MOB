@@ -46,6 +46,8 @@ git clone https://github.com/jjanoski/MOB.git
 git checkout devel
 ----
 
+This process will be depreicated with new build method
+
 ----
 mv MOB catkin_ws
 ----
@@ -65,7 +67,7 @@ git branch feature/<name of feature your working on>
 ----
 
 ----
-git checkout -b feature/<name of feature your working on>
+git checkout feature/<name of feature your working on>
 ----
 
 Double check that your properly checked out the branch
