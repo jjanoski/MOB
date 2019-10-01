@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <robot name="mob_robot">
 
-<!-- Base Link is left foot -->
+<!-- Base Link are the feet -->
   <link name="base_link">
   <!-- Right Foot -->
     <visual>
