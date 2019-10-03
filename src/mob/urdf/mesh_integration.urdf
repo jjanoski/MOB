@@ -1,19 +1,19 @@
 <?xml version='1.0'?>
 <robot name="mob_robot">
 
-  <!-- Base Link is chest mesh bracet-->
+  <!-- Base Link is Chest -->
   <link name="base_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Chest.dae" scale="0.02905, 0.09013, 0.04335"/>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Chest.dae" scale="0.1, 0.1, 0.1"/>
       </geometry>
     </visual>
     <!-- Collision on base_link-->
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Chest.dae"/>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Chest.dae" scale="0.1, 0.1, 0.1"/>
       </geometry>
     </collision>
     <!--Mass in kilograms-->
@@ -23,35 +23,412 @@
     </inertial>
   </link>
 
-  <!--head motor-->
-  <link name="head_motor">
-   <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Chest.dae" scale="0.02905, 0.09013, 0.04335"/>
-      </geometry>
-    </visual>
-    <!-- Collision on base_link-->
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Chest.dae"/>
-      </geometry>
-    </collision>
-    <!--Mass in kilograms-->
-    <inertial>
-      <mass value="0.0005"/>
-      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
-    </inertial>
-  </link>
-
-  <!--This is the head/chest joint -->
+  <!-- head/chest joint -->
   <joint name="head_joint" type="revolute">
     <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
     <parent link="base_link"/>
     <child link="head_motor"/>
-    <origin xyz="0 0 0.07" rpy="0 0 0" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
     <axis xyz="0 0 1" />
   </joint>
+
+  <!-- head motor -->
+  <link name="head_motor">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/HeadMotor.dae" scale="0.004, 0.004, 0.004"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/HeadMotor.dae" scale="0.004, 0.004, 0.004"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!-- left_arm/chest joint -->
+  <joint name="left_arm_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="left_arm"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- left arm -->
+  <link name="left_arm">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/LeftArm.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/LeftArm.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!-- left_hand/left_arm joint -->
+  <joint name="left_hand_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="left_arm"/>
+    <child link="left_hand"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- left hand -->
+  <link name="left_hand">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/LeftHand.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/LeftHand.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!-- Left_thigh/chest joint -->
+  <joint name="left_thigh_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="left_thigh"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- left thigh -->
+  <link name="left_thigh">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Thigh.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Thigh.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!-- Left_shin/Left_thigh joint -->
+  <joint name="left_shin_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="left_thigh"/>
+    <child link="left_shin"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- left shin -->
+  <link name="left_shin">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Shin.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Shin.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!-- Left_ankle/Left_shin joint -->
+  <joint name="left_ankle_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="left_shin"/>
+    <child link="left_ankle"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- left ankle -->
+  <link name="left_ankle">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/LeftAnkle.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/LeftAnkle.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!-- Left_foot/Left_ankle joint -->
+  <joint name="left_foot_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="left_ankle"/>
+    <child link="left_foot"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- left foot -->
+  <link name="left_foot">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/LeftFoot.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/LeftFoot.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!-- right_arm/chest joint -->
+  <joint name="right_arm_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="right_arm"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- right arm -->
+  <link name="right_arm">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/RightArm.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/RightArm.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+
+
+  <!-- right_hand/right_arm joint -->
+  <joint name="right_hand_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="right_arm"/>
+    <child link="right_hand"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- right hand -->
+  <link name="right_hand">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/RightHand.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/RightHand.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+
+
+
+  <!-- Right_thigh/chest joint -->
+  <joint name="right_thigh_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="right_thigh"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- right thigh -->
+  <link name="right_thigh">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Thigh.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Thigh.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!-- Right_shin/Right_thigh joint -->
+  <joint name="Right_shin_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="right_thigh"/>
+    <child link="right_shin"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- right shin -->
+  <link name="right_shin">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Shin.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/Shin.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!-- Right_ankle/Right_shin joint -->
+  <joint name="right_ankle_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="right_shin"/>
+    <child link="right_ankle"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- right ankle -->
+  <link name="right_ankle">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/RightAnkle.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/RightAnkle.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!-- Right_foot/Right_ankle joint -->
+  <joint name="right_foot_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="right_ankle"/>
+    <child link="right_foot"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- right foot -->
+  <link name="right_foot">
+   <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/RightFoot.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+   </visual>
+    <!-- Collision on base_link-->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/RightFoot.dae" scale="0.1, 0.1, 0.1"/>
+      </geometry>
+    </collision>
+    <!--Mass in kilograms-->
+    <inertial>
+      <mass value="0.0005"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
 
 </robot>
