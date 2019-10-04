@@ -230,7 +230,7 @@
   <!-- Right Arm -->
   <link name="right_arm_link">
      <visual>
-      <origin xyz="0 0 0.0325" rpy="0 0 0" />
+      <origin xyz="0 0 -0.02" rpy="0 0 0" />
       <geometry>
           <box size="0.0407 0.0197 0.0429"/>
       </geometry>
@@ -251,7 +251,7 @@
 
     <!-- Lower Arm Bracket -->
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 1.57" />
+      <origin xyz="0 0 -0.063" rpy="0 0 1.57" />
       <geometry>
           <box size="0.025 0.055 0.065" />
       </geometry>
@@ -276,7 +276,124 @@
     <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
     <parent link="right_shoulder"/>
     <child link="right_arm_link"/>
-    <origin xyz="0 0 0" rpy="0 0 0" />
+    <origin xyz="0 0.022 0.02" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <!-- Left Arm -->
+  <link name="left_arm_link">
+     <visual>
+      <origin xyz="0 0 -0.02" rpy="0 0 0" />
+      <geometry>
+          <box size="0.0407 0.0197 0.0429"/>
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+          <box size="0.407 0.197 0.429" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.055"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+
+    <!-- Lower Arm Bracket -->
+    <visual>
+      <origin xyz="0 0 -0.063" rpy="0 0 1.57" />
+      <geometry>
+          <box size="0.025 0.055 0.065" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+     <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+          <box size="0.025 0.055 0.065" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.055"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!--This is the left arm joint -->
+  <joint name="left_arm_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="left_shoulder"/>
+    <child link="left_arm_link"/>
+    <origin xyz="0 -0.022 0.02" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <!--Right Hand-->
+  <link name="right_hand">
+    <visual>
+      <origin xyz="0 0 -0.015" rpy="0 0 0" />
+      <geometry>
+          <box size="0.0407 0.0197 0.0429"/>
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+          <box size="0.407 0.197 0.429" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.055"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!--This is the right hand joint -->
+  <joint name="right_hand_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="right_arm_link"/>
+    <child link="right_hand"/>
+    <origin xyz="0 0 -0.085" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <!--Left Hand-->
+  <link name="left_hand">
+    <visual>
+      <origin xyz="0 0 -0.015" rpy="0 0 0" />
+      <geometry>
+          <box size="0.0407 0.0197 0.0429"/>
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+          <box size="0.407 0.197 0.429" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.055"/>
+      <inertia ixx="0.13" ixy="0.0" ixz="0.0" iyy="0.21" iyz="0.0" izz="0.13" />
+    </inertial>
+  </link>
+
+  <!--This is the left hand joint -->
+  <joint name="left_hand_joint" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="left_arm_link"/>
+    <child link="left_hand"/>
+    <origin xyz="0 0 -0.085" rpy="0 0 0" />
     <axis xyz="1 0 0" />
   </joint>
 
