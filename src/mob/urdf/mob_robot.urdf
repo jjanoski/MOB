@@ -482,7 +482,7 @@
    </visual>
     <!-- Collision on left shin-->
     <collision>
-      <origin rpy="0 0 0" xyz="--0.0081 -0.0143 -0.0286"/>
+      <origin rpy="0 0 0" xyz="-0.0081 -0.0143 -0.0286"/>
       <geometry>
         <mesh filename="file:///home/jiovanni/catkin_ws/src/mob/urdf/LeftShin.dae" scale="0.01, 0.01, 0.01"/>
       </geometry>
@@ -494,7 +494,7 @@
     </inertial>
   </link>
 
-<!-- Left ankle/Left Shin joint -->
+  <!-- Left ankle/Left Shin joint -->
   <joint name="left_ankle_joint" type="revolute">
     <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
     <parent link="left_shin"/>
