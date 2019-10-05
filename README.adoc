@@ -51,10 +51,6 @@ mv MOB catkin_ws
 ----
 
 ----
-rm -rf build devel
-----
-
-----
 catkin_make
 ----
 
@@ -65,7 +61,7 @@ git branch feature/<name of feature your working on>
 ----
 
 ----
-git checkout -b feature/<name of feature your working on>
+git checkout feature/<name of feature your working on>
 ----
 
 Double check that your properly checked out the branch
