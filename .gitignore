@@ -1,5 +1,6 @@
 *.swp
 .idea/
 build/*
-devel/* 
+devel/*
+*.catkin_workspace
 .catkin_workspace

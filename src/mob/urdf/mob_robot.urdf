@@ -1,9 +1,34 @@
 <?xml version='1.0'?>
 <robot name="mob_robot">
 
+<!-- Base Link are the feet -->
+  <link name="base_link">
+  <!-- Right Foot -->
   <!-- Base Link is left foot -->
   <link name="base_link">
     <!-- Foot -->
+    <visual>
+      <origin xyz="0 0.08 0" rpy="0 0 0" />
+      <geometry>
+          <box size="0.125 0.062 0.002" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+
+    <!-- Right Foot Motor -->
+    <visual>
+      <origin xyz="0 0.08 0.01" rpy="1.57 0 0" />
+      <geometry>
+          <box size="0.0407 0.0197 0.0429" />
+          <box size="0.125 0.062 0.002" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+    <!-- Left Foot -->
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -14,6 +39,10 @@
       </material>
     </visual>
 
+    <!-- Left Foot Motor -->
+    <visual>
+      <origin xyz="0 0 0.01" rpy="1.57 0 0" />
+      <geometry>
     <!-- Foot Motor -->
     <visual>
       <origin xyz="0 0 0.01" rpy="1.57 0 0" />
@@ -26,6 +55,9 @@
     </visual>
   </link>
 
+  <!-- Right ankle -->
+  <link name="right_ankle_link">
+    <!-- Right Ankle -->
   <!-- Left ankle -->
   <link name="ankle_link">
     <!-- Ankle -->
@@ -39,6 +71,7 @@
       </material>
     </visual>
 
+    <!-- Right Ankle Motor -->
     <!-- Ankle Motor -->
     <visual>
       <origin xyz="0 0 0.045" rpy="1.57 0 0" />
@@ -50,7 +83,248 @@
       </material>
     </visual>
   </link>
+  <!--Right Ankle joint roll-->
+  <joint name="right_ankle_joint_roll" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="right_ankle_link"/>
+    <origin xyz="0 0.08 0.014" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
 
+  <!-- Left ankle -->
+  <link name="left_ankle_link">
+    <!-- Left Ankle -->
+    <visual>
+      <origin xyz="0 0 0.014" rpy="0 1.57 0" />
+      <geometry>
+          <box size="0.0435 0.0252 0.05588" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+
+    <!-- Left Ankle Motor -->
+    <visual>
+      <origin xyz="0 0 0.045" rpy="1.57 0 0" />
+      <geometry>
+          <box size="0.0407 0.0197 0.0429" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+  </link>
+
+  <!--Left Ankle joint roll-->
+  <joint name="left_ankle_joint_roll" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="left_ankle_link"/>
+    <origin xyz="0 0 0.014" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <!-- Right Knee -->
+  <link name="right_knee_link">
+    <visual>
+      <origin xyz="0 0 0.045" rpy="0 0 0" />
+      <geometry>
+          <box size="0.0256 0.0563 0.0874" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+  </link>
+
+  <!--Right Knee joint pitch-->
+  <joint name="right_knee_joint_pitch" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="right_ankle_link"/>
+    <child link="right_knee_link"/>
+    <origin xyz="0 0 0.045" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- Left Knee -->
+  <link name="left_knee_link">
+    <visual>
+      <origin xyz="0 0 0.045" rpy="0 0 0" />
+      <geometry>
+          <box size="0.0256 0.0563 0.0874" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+  </link>
+
+  <!--Left Knee joint pitch-->
+  <joint name="left_knee_joint_pitch" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="left_ankle_link"/>
+    <child link="left_knee_link"/>
+    <origin xyz="0 0 0.045" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- Right Thigh -->
+  <link name="right_thigh_link">
+    <visual>
+      <origin xyz="0 0 0.06" rpy="0 0 0" />
+      <geometry>
+          <box size="0.0285 0.0433 0.1" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+  </link>
+
+  <!--Right Thigh joint pitch-->
+  <joint name="right_thigh_joint_pitch" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="right_knee_link"/>
+    <child link="right_thigh_link"/>
+    <origin xyz="0 0 0.06" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- Left Thigh -->
+  <link name="left_thigh_link">
+    <visual>
+      <origin xyz="0 0 0.06" rpy="0 0 0" />
+      <geometry>
+          <box size="0.0285 0.0433 0.1" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+  </link>
+
+  <!--Left Thigh joint pitch-->
+  <joint name="left_thigh_joint_pitch" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="left_knee_link"/>
+    <child link="left_thigh_link"/>
+    <origin xyz="0 0 0.06" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- Right Hip -->
+  <link name="right_hip_link">
+    <!-- Hip Lower Bracket -->
+    <visual>
+      <origin xyz="0 0 0.07" rpy="0 0 0" />
+      <geometry>
+          <box size="0.025 0.055 0.065" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+
+    <!-- Hip Upper Bracket -->
+    <visual>
+      <origin xyz="0 0 0.123" rpy="0 0 0" />
+      <geometry>
+          <box size="0.056 0.025 0.044" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+  </link>
+
+  <!--Right Hip joint pitch-->
+  <joint name="right_hip_joint_pitch" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="right_thigh_link"/>
+    <child link="right_hip_link"/>
+    <origin xyz="0 0 0.07" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- Left Hip -->
+  <link name="left_hip_link">
+    <!-- Hip Lower Bracket -->
+    <visual>
+      <origin xyz="0 0 0.07" rpy="0 0 0" />
+      <geometry>
+          <box size="0.025 0.055 0.065" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+
+    <!-- Hip Upper Bracket -->
+    <visual>
+      <origin xyz="0 0 0.123" rpy="0 0 0" />
+      <geometry>
+          <box size="0.056 0.025 0.044" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+  </link>
+
+  <!--Left Hip joint pitch-->
+  <joint name="left_hip_joint_pitch" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="left_thigh_link"/>
+    <child link="left_hip_link"/>
+    <origin xyz="0 0 0.07" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- Right Hip Motor -->
+  <link name="right_hip_motor_link">
+    <visual>
+      <origin xyz="0 0 0.07" rpy="1.57 0 1.57" />
+      <geometry>
+          <box size="0.0407 0.0197 0.0429" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+  </link>
+
+  <!--Right Hip joint roll-->
+  <joint name="right_hip_joint_roll" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="right_hip_link"/>
+    <child link="right_hip_motor_link"/>
+    <origin xyz="0 0 0.07" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <!-- Left Hip Motor -->
+  <link name="left_hip_motor_link">
+    <visual>
+      <origin xyz="0 0 0.07" rpy="1.57 0 1.57" />
+      <geometry>
+          <box size="0.0407 0.0197 0.0429" />
+      </geometry>
+      <material name="darkgrey">
+          <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+  </link>
+
+  <!--Left Hip joint roll-->
+  <joint name="left_hip_joint_roll" type="revolute">
+    <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+    <parent link="left_hip_link"/>
+    <child link="left_hip_motor_link"/>
+    <origin xyz="0 0 0.07" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
   <!--Ankle joint roll-->
   <joint name="ankle_joint_roll" type="revolute">
     <limit effort="1000.0" lower="-1.0" upper="1.0" velocity="0.5"/>
