@@ -3,25 +3,75 @@ Mobile Oriented Biped
 
 == Getting started
 
+
+Generate ssh key using open-ssh, this is included in ubuntu 18.04
+[%hardbreaks]
+Check to see if a file .ssh exists in home directory
+
 ----
-git clone repo
+cd
 ----
 
 ----
-Generate ssh key
+ls -la | grep .ssh
+----
 
+If this directory does not exist create it in your home directory
+
+----
+mkdir .ssh
+----
+
+Go into the .ssh file and generate a ssh key
+
+----
+cd .ssh
+----
+
+----
 ssh-keygen
+----
 
-copy id_rsa.pub
+Now you should see two file that were generated copy the id_rsa.pub with gedit, or anyother text editor.
+[%hardbreaks]
+Go to your Github account, click on profile>setting>ssh>new key
+[%hardbreaks]
+Paste the id_rsa.pub content into profile ssh and give it a name
 
-go to github, click on profile>setting>ssh>new key
+----
+git clone https://github.com/jjanoski/MOB.git
 ----
 
 ----
-git checkout -b devel
+git checkout devel
 ----
 
-== commit changes
+----
+mv MOB catkin_ws
+----
+
+----
+catkin_make
+----
+
+== Creating new feature
+
+----
+git branch feature/<name of feature your working on>
+----
+
+----
+git checkout feature/<name of feature your working on>
+----
+
+Double check that your properly checked out the branch
+
+----
+git status
+----
+
+
+== Commit Changes to feature branch
 
 ----
 git status
@@ -32,10 +82,31 @@ git add <files listed>
 ----
 
 ----
-git commit -m "<type what was changed here>"
+git commit -m  "<type what was changed here>"
 ----
 
 ----
 git push
 ----
 
+== Merge branch to Devel
+
+This require a peer review to be approved
+[%hardbreaks]
+Make sure all your commits have been pushed
+[%hardbreaks]
+Go to Github and create a merge request
+
+== Check Mob Rviz
+
+Type the following command to see mob the robot in rviz
+
+----
+roslaunch mob mob_rviz.launch model:=mob_robot.urdf
+----
+
+Setup an alias(command shortcut) by opening adding command to the end of .bashrc file
+
+----
+alias mobr='roslaunch mob mob_rviz.launch model:=$(find mob)/mob_robot.urdf'
+----
