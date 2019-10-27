@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<robot>
+
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/mob</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+  <!-- base_link -->
+  <gazebo reference="base_link">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- head_motor -->
+  <gazebo reference="head_motor">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- right_shoulder -->
+  <gazebo reference="right_shoulder">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- right_arm -->
+  <gazebo reference="right_arm">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- right_hand -->
+  <gazebo reference="right_hand">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- right_thigh -->
+  <gazebo reference="right_thigh">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- right_knee -->
+  <gazebo reference="right_knee">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- right_shin -->
+  <gazebo reference="right_shin">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- right_ankle -->
+  <gazebo reference="right_ankle">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- right_foot -->
+  <gazebo reference="right_foot">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- left_shoulder -->
+  <gazebo reference="left_shoulder">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- left_arm -->
+  <gazebo reference="left_arm">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- left_hand -->
+  <gazebo reference="left_hand">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- left_thigh -->
+  <gazebo reference="left_thigh">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- left_knee -->
+  <gazebo reference="left_knee">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- left_shin -->
+  <gazebo reference="left_shin">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- left_ankle -->
+  <gazebo reference="left_ankle">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- left_foot -->
+  <gazebo reference="left_foot">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+</robot>
