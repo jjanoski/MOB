@@ -64,7 +64,7 @@ git branch feature/<name of feature your working on>
 git checkout feature/<name of feature your working on>
 ----
 
-Double check that your properly checked out the branch
+Double check that your properly checked out the branch.
 
 ----
 git status
