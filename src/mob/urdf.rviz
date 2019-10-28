@@ -5,6 +5,8 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /RobotModel1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.8073089718818665
     Tree Height: 572
   - Class: rviz/Selection
@@ -62,6 +64,11 @@ Visualization Manager:
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
         base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        chest:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -151,6 +158,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        world:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -158,19 +169,83 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: true
-      Marker Scale: 1
+        base_link:
+          Value: true
+        chest:
+          Value: true
+        head_motor:
+          Value: true
+        left_ankle:
+          Value: true
+        left_arm:
+          Value: true
+        left_foot:
+          Value: true
+        left_hand:
+          Value: true
+        left_knee:
+          Value: true
+        left_shin:
+          Value: true
+        left_shoulder:
+          Value: true
+        left_thigh:
+          Value: true
+        right_ankle:
+          Value: true
+        right_arm:
+          Value: true
+        right_foot:
+          Value: true
+        right_hand:
+          Value: true
+        right_knee:
+          Value: true
+        right_shin:
+          Value: true
+        right_shoulder:
+          Value: true
+        right_thigh:
+          Value: true
+        world:
+          Value: true
+      Marker Scale: 0.09000000357627869
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        world:
+          base_link:
+            chest:
+              head_motor:
+                {}
+            left_shoulder:
+              left_arm:
+                left_hand:
+                  {}
+            left_thigh:
+              left_knee:
+                left_shin:
+                  left_ankle:
+                    left_foot:
+                      {}
+            right_shoulder:
+              right_arm:
+                right_hand:
+                  {}
+            right_thigh:
+              right_knee:
+                right_shin:
+                  right_ankle:
+                    right_foot:
+                      {}
       Update Interval: 0
-      Value: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 163; 163; 163
@@ -199,25 +274,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.4723837375640869
+      Distance: 0.30755501985549927
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: 0.0074934642761945724
+        Y: 0.04263713210821152
+        Z: 0.013563176617026329
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3903979957103729
+      Pitch: 0.7553979754447937
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 5.4235920906066895
+      Yaw: 4.748620510101318
     Saved: ~
 Window Geometry:
   Displays:
