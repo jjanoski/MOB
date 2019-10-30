@@ -54,7 +54,63 @@ mv MOB catkin_ws
 catkin_make
 ----
 
-== Creating new feature
+== Install Dependencies
+
+Run command to install all project dependancies
+
+----
+pip install -r requirements.txt
+----
+
+== Check Mob Rviz
+
+Type the following command to see mob the robot in rviz
+
+*gedit URDF, within file change the .dae paths to match your computer path*
+
+----
+roslaunch mob mob_rviz.launch
+----
+
+Setup an alias(command shortcut) by opening adding command to the end of .bashrc file
+
+----
+alias mobr='roslaunch mob mob_rviz.launch'
+----
+
+----
+source .bashrc
+----
+
+== Gazebo
+update Gazebo to latest version
+
+----
+sudo apt-get update
+----
+
+----
+curl -sSL http://get.gazebosim.org | sh
+----
+
+----
+sudo apt-get upgrade
+----
+
+== MOB Inside Gazebo
+
+Setup an alias(command shortcut) by opening adding command to the end of .bashrc file
+
+----
+alias mobg='roslaunch mob mob_gazebo.launch'
+----
+
+----
+source .bashrc
+----
+
+
+== Creating new feature branch
 
 ----
 git branch feature/<name of feature your working on>
@@ -97,31 +153,3 @@ Make sure all your commits have been pushed
 [%hardbreaks]
 Go to Github and create a merge request
 
-== Check Mob Rviz
-
-Type the following command to see mob the robot in rviz
-
-----
-roslaunch mob mob_rviz.launch model:=mob_robot.urdf
-----
-
-Setup an alias(command shortcut) by opening adding command to the end of .bashrc file
-
-----
-alias mobr='roslaunch mob mob_rviz.launch model:=$(find mob)/mob_robot.urdf'
-----
-
-== Gazebo
-update Gazebo to latest version
-
-----
-sudo apt-get update
-----
-
-----
-curl -sSL http://get.gazebosim.org | sh
-----
-
-----
-sudo apt-get upgrade
-----

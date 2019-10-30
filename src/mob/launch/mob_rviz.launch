@@ -1,5 +1,5 @@
 <launch>
-   <arg name="model" />
+   <arg name="model" default="$(find mob)/urdf/robot.xacro"/>
    <arg name="gui" default="True" />
 
    <!-- set these parameters on Parameter Server -->
