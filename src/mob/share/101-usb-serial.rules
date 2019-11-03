@@ -1,0 +1,1 @@
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0415", ATTRS{idProduct}=="0115", ATTRS{product}=="RTrobot Servo Controller", SYMLINK+="servoHorn"
