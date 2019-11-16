@@ -1,3 +1,4 @@
 opencv-python
 RPi.GPIO
 pyserial
+smbus
