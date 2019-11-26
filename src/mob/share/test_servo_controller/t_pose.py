@@ -16,10 +16,21 @@ right     | left
 20: foot  | 25:  foot
 """
         
-print('Initial Position')
+print('wave 1')
 #stage 1
-#        <--- gain values                                20 | 21   lose values ---->
-sp.write('#16 P1500 #17 P1650 #18 P1500 #19 P1600 #20 P1600 #21 P1600 #22 P1500 #23 P1600 #24 P1400 P1550 T1000 \r')
+sp.write('#26 P1500 #27 P1640 #28 P1500 T1000 \r')
+sp.write('#29 P1600 #30 P1600 #31 P1500 T1000 \r')
+sleep(2)
+
+print('wave 2')
+#stage 2
+sp.write('#27 P2500 #30 P700 T1000 \r')
+sleep(3)
+
+print('wave 3')
+#stage 3
+sp.write('#26 P1500 #27 P1600 #28 P1500 T1000 \r')
+sp.write('#29 P1600 #30 P1600 #31 P1500 T1000 \r')
 sleep(2)
 
 sp.close()

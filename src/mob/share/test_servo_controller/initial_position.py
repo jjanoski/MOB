@@ -18,7 +18,7 @@ right     | left
         
 print('Initial Position')
 #stage 1
-sp.write('#16 P1500 #17 P1600 #18 P1500 #19 P1600 #20 P1600 #21 P1600 #22 P1500 #23 P1600 #24 P1600 #25 P1550 T1000 \r')
+sp.write('#16 P1500 #17 P1600 #18 P1500 #19 P1700 #20 P1600 #21 P1600 #22 P1500 #23 P1600 #24 P1600 #25 P1750 T1000 \r')
 sleep(2)
 
 sp.close()
