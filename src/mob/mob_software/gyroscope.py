@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import smbus2
+import smbus
 from time import sleep
 
 

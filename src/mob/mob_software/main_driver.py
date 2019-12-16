@@ -4,6 +4,7 @@ import mob_config as mob
 import gyroscope
 import sonar
 import serial
+import time
 # from pid import PID
 from PIDController_old import pid
 
@@ -56,9 +57,11 @@ class main:
                          'T1000 \r')
 
         while connection:
+            print("\n")
             print("Sonar: ", self.sonar)
             print("Gyroscope: ", self.gyro)
             print("PID: ", self.pid)
+            time.sleep(2)
 
 
 if __name__ == '__main__':
