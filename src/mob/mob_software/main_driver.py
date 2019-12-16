@@ -1,12 +1,16 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 
+# custom modules
 import mob_config as mob
 import gyroscope
 import sonar
-import serial
-import time
 # from pid import PID
 from PIDController_old import pid
+
+# dependancy
+import serial
+import time
+from threading import Thread
 
 
 class main:
@@ -40,11 +44,11 @@ class main:
         self.left_foot = mob.left_foot
 
         # sensors
-        self.gyro = gyroscope.gyroscope
-        self.sonar = sonar.sonar
+        # gyro_thread  = Thread(target=gyroscope.gyroscope())
+        # sonar_thread = Thread(target=sonar.sonar(), args=args, kwargs=kwargs)
 
         # controller
-        self.pid = pid
+        self.pid = pid(left_hip, right_hip, gyroscope)
 
         self.driver()
 
@@ -57,10 +61,11 @@ class main:
                          'T1000 \r')
 
         while connection:
-            print("\n")
-            print("Sonar: ", self.sonar.get_inch)
-            print("Gyroscope: ", self.gyro.driver)
-            print("PID: ", self.pid.PID)
+            Ax,Ay,Az,Gx,Gz,Gy = gyroscope.gyroscope
+            pid          = self.pid
+            print("sonar cm", sonar_cm)
+            print("sonar inch", sonar_inch)
+            print("Gyro: "+str(Ax)+" "+str(Ay)+str(Az))
             time.sleep(2)
 
 
