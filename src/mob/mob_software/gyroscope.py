@@ -18,7 +18,7 @@ class gyroscope:
         self.GYRO_XOUT_H = 0x43
         self.GYRO_YOUT_H = 0x45
         self.GYRO_ZOUT_H = 0x47
-        self.bus = smbus2.SMBus(1)  # or bus = smbus.SMBus(0) for older version boards
+        self.bus = smbus.SMBus(1)  # or bus = smbus.SMBus(0) for older version boards
         self.driver()
 
     def mpu_init(self):

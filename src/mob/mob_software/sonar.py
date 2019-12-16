@@ -5,18 +5,18 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
 
 
-class sonar():
+class sonar:
     def __init__(self):
         self.distance_cm = None
         self.distance_inch = None
-        self.driver()
 
-    def driver(self):
+    def get_cm(self):
             self.distance_cm = self.read_distance(11)
-            self.distance_inch = self.distance_cm/2.54
-            print("distnace: "+str(round(self.distance_cm, 2))+" cm")
-            print("distnace: "+str(round(self.distance_inch, 2))+" in")
-            return self.distance_inch
+            return self.distance_cm
+
+    def get_inch(self):
+        self.distance_inch = self.distance_cm / 2.54
+        return self.distance_inch
 
     def read_distance(self, pin):
         # pin configuration
@@ -47,7 +47,3 @@ class sonar():
     def get_cm_distance(self, duration):
         distance_in_cm = duration * 34000/2
         return distance_in_cm
-        
-
-if __name__ == '__main__':
-    sonar()

@@ -40,8 +40,8 @@ class main:
         self.left_foot = mob.left_foot
 
         # sensors
-        self.gyro = gyroscope
-        self.sonar = sonar
+        self.gyro = gyroscope.gyroscope
+        self.sonar = sonar.sonar
 
         # controller
         self.pid = pid
@@ -58,9 +58,9 @@ class main:
 
         while connection:
             print("\n")
-            print("Sonar: ", self.sonar)
-            print("Gyroscope: ", self.gyro)
-            print("PID: ", self.pid)
+            print("Sonar: ", self.sonar.get_inch)
+            print("Gyroscope: ", self.gyro.driver)
+            print("PID: ", self.pid.PID)
             time.sleep(2)
 
 
