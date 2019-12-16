@@ -12,12 +12,11 @@ class sonar():
         self.driver()
 
     def driver(self):
-        while True:
             self.distance_cm = self.read_distance(11)
             self.distance_inch = self.distance_cm/2.54
             print("distnace: "+str(round(self.distance_cm, 2))+" cm")
             print("distnace: "+str(round(self.distance_inch, 2))+" in")
-            time.sleep(1)
+            return self.distance_inch
 
     def read_distance(self, pin):
         # pin configuration

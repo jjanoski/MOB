@@ -1,6 +1,8 @@
 *.swp
+*.pyc
 .idea/
 build/*
 devel/*
 *.catkin_workspace
 .catkin_workspace
+venv/

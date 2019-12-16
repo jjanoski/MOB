@@ -5,7 +5,7 @@ import gyroscope
 import sonar
 import serial
 # from pid import PID
-from PIDController_old import pid_contorl
+from PIDController_old import pid
 
 
 class main:
@@ -37,13 +37,15 @@ class main:
         self.left_knee = mob.left_knee
         self.left_ankle = mob.left_ankle
         self.left_foot = mob.left_foot
+
+        # sensors
+        self.gyro = gyroscope
+        self.sonar = sonar
+
+        # controller
+        self.pid = pid
+
         self.driver()
-
-    def control(self):
-        pass
-
-    def update(self):
-        pass
 
     def driver(self):
         # establish connection
@@ -52,6 +54,11 @@ class main:
         connection.write('#14 P1500 #15 P1500 #16 P1500 #17 P1600 #18 P1500 #19 P1700 #20 P1600 #21 P1600 #22 P1500 '
                          '#23 P1600 #24 P1600 #25 P1750 #26 P1500 #27 P1640 #28 P1500 #29 P1600 #30 P1500 #31 P1500 '
                          'T1000 \r')
+
+        while connection:
+            print("Sonar: ", self.sonar)
+            print("Gyroscope: ", self.gyro)
+            print("PID: ", self.pid)
 
 
 if __name__ == '__main__':

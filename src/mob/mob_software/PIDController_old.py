@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 
-class pid_contorl():
+class pid:
     def __init__(self, left_motor, right_motor, gyroscope):
         # Gyroscope
         self.gyro = gyroscope
