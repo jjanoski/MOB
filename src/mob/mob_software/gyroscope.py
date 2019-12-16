@@ -1,26 +1,27 @@
 #!/usr/bin/env python
 
-import smbus
+import smbus2
 from time import sleep
 
-class gyroscope():
+
+class gyroscope:
     def __init__(self):
-        self.PWR_MGMT_1     = 0x6B
+        self.PWR_MGMT_1 = 0x6B
         self.Device_Address = 0x68
-        self.SMPLRT_DIV   = 0x19
-        self.CONFIG       = 0x1A
-        self.GYRO_CONFIG  = 0x1B
-        self.INT_ENABLE   = 0x38
+        self.SMPLRT_DIV = 0x19
+        self.CONFIG = 0x1A
+        self.GYRO_CONFIG = 0x1B
+        self.INT_ENABLE = 0x38
         self.ACCEL_XOUT_H = 0x3B
         self.ACCEL_YOUT_H = 0x3D
         self.ACCEL_ZOUT_H = 0x3F
-        self.GYRO_XOUT_H  = 0x43
-        self.GYRO_YOUT_H  = 0x45
-        self.GYRO_ZOUT_H  = 0x47
-        self.bus = smbus.SMBus(1) # or bus = smbus.SMBus(0) for older version boards
+        self.GYRO_XOUT_H = 0x43
+        self.GYRO_YOUT_H = 0x45
+        self.GYRO_ZOUT_H = 0x47
+        self.bus = smbus2.SMBus(1)  # or bus = smbus.SMBus(0) for older version boards
         self.driver()
 
-    def MPU_init(self):
+    def mpu_init(self):
         # Write to sample rate register
         self.bus.write_byte_data(self.Device_Address, self.SMPLRT_DIV, 7)
 
@@ -36,19 +37,19 @@ class gyroscope():
     def read_raw_data(self, addr):
         # Accelero and Gyro Value are 16-bits
         high = self.bus.read_byte_data(self.Device_Address, addr)
-        low  = self.bus.read_byte_data(self.Device_Address, addr+1)
+        low = self.bus.read_byte_data(self.Device_Address, addr+1)
 
         # Concatenate higher and lower value
-        value = ((high<<8) | low) 
+        value = ((high << 8) | low)
 
         # Get signed value from MPU6050
-        if(value > 32768):
+        if value > 32768:
             value = value - 65536
         return value
 
     def driver(self):
         try:
-            self.MPU_init()
+            self.mpu_init()
             count = 0
 
             while True:
@@ -71,19 +72,19 @@ class gyroscope():
                 Gy = gyro_y/131.0
                 Gz = gyro_z/131.0
                 print("Readout: "+str(count))
-                print("Gryroscope x: %.2f " %Gx)
-                print("Gryroscope y: %.2f " %Gy)
-                print("Gryroscope z: %.2f " %Gz)
+                print("Gryroscope x: %.2f " % Gx)
+                print("Gryroscope y: %.2f " % Gy)
+                print("Gryroscope z: %.2f " % Gz)
     
-                print("Accel x : %.2f " %Ax)
-                print("Accel y : %.2f " %Ay)
-                print("Accel z : %.2f " %Az)
-                count +=1
+                print("Accel x : %.2f " % Ax)
+                print("Accel y : %.2f " % Ay)
+                print("Accel z : %.2f " % Az)
+                count += 1
                 sleep(2)
-        except KeyboardInterrupt:
-            print("\n Ctrl+C pressed, Exit")
+                return [Ax, Ay, Az, Gx, Gy, Gz]
+        except Exception as e:
+            print("ERROR, ", e)
 
 
 if __name__ == '__main__':
     gyroscope()
-

@@ -1,13 +1,13 @@
 #!/usr/bin/python python
 
 import time
-import sys
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
 
+
 class sonar():
     def __init__(self):
-        self.distance_cm   = None
+        self.distance_cm = None
         self.distance_inch = None
         self.driver()
 
@@ -29,10 +29,10 @@ class sonar():
         GPIO.output(pin, 0)
         GPIO.setup(pin, GPIO.IN)
         # get stat time
-        while GPIO.input(pin)==0:
-            start_time=time.time()
+        while GPIO.input(pin) == 0:
+            start_time = time.time()
         # get end time
-        while GPIO.input(pin)==1:
+        while GPIO.input(pin) == 1:
             end_time = time.time()
 
         # calculation duraiton and distance 
