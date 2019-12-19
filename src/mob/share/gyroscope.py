@@ -80,8 +80,6 @@ class gyroscope:
                 print("Accel y : %.2f " % Ay)
                 print("Accel z : %.2f " % Az)
                 count += 1
-                sleep(2)
-                return [Ax, Ay, Az, Gx, Gy, Gz]
         except Exception as e:
             print("ERROR, ", e)
 

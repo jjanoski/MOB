@@ -2,3 +2,4 @@ opencv-python
 RPi.GPIO
 pyserial
 smbus
+simple-pid
