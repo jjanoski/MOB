@@ -5,7 +5,7 @@ import sys
 from time import sleep
 from simple_pid import PID
 
-class MobSoft:
+class Gyroscope:
     def __init__(self):
         self.PWR_MGMT_1 = 0x6B
         self.Device_Address = 0x68
@@ -24,11 +24,8 @@ class MobSoft:
         self.pid_y = PID(1, 0.09, 0.1, setpoint=0)
         self.pid_x.sample_time = 0.01
         self.pid_y.sample_time = 0.01
-        self.pid_x.setpoint = 0
-        self.pid_y.setpoint = 0
         self.run()
 
-# ---------------------- Gyroscope setup ----------------------------------
     def setup(self):
         # Write to sample rate register
         self.bus.write_byte_data(self.Device_Address, self.SMPLRT_DIV, 7)
@@ -55,7 +52,6 @@ class MobSoft:
             value = value - 65536
         return value
 
-# ---------------------- Main Loop      ----------------------------------
     def run(self):
         while True:
             try:
@@ -63,36 +59,35 @@ class MobSoft:
                 # Read Accelerometer raw value
                 acc_x = self.read_raw_data(self.ACCEL_XOUT_H)
                 acc_y = self.read_raw_data(self.ACCEL_YOUT_H)
-                # acc_z = self.read_raw_data(self.ACCEL_ZOUT_H)
+                acc_z = self.read_raw_data(self.ACCEL_ZOUT_H)
 
                 # Read Gyroscope raw value
-                # gyro_x = self.read_raw_data(self.GYRO_XOUT_H)
-                # gyro_y = self.read_raw_data(self.GYRO_YOUT_H)
-                # gyro_z = self.read_raw_data(self.GYRO_ZOUT_H)
+                gyro_x = self.read_raw_data(self.GYRO_XOUT_H)
+                gyro_y = self.read_raw_data(self.GYRO_YOUT_H)
+                gyro_z = self.read_raw_data(self.GYRO_ZOUT_H)
 
                 # Full Scale range +/- 250 degree/C as per senstivity scale factor
                 accel_x = acc_x/16384.0
                 accel_y = acc_y/16384.0
-                # accel_z = acc_z/16384.0
+                accel_z = acc_z/16384.0
             
                 control_x = self.pid_x(accel_x)
-                control_y = self.pid_y(accel_y)
-                
-                
-                # gyroscope_x = gyro_x/131.0
-                # gyroscope_y = gyro_y/131.0
-                # gyroscope_z = gyro_z/131.0
+                control_y = self.pid_y(accel_y) 
+
+                gyroscope_x = gyro_x/131.0
+                gyroscope_y = gyro_y/131.0
+                gyroscope_z = gyro_z/131.0
                 
                 print("\n")
                 print("Control x: "+str(round(control_x, 3)))
                 print("Control y: "+str(round(control_y, 3)))
                 print("accel_x  : "+str(round(accel_x, 3)))
                 print("accel_y  : "+str(round(accel_y, 3)))
-                
+            
                 sleep(2)
             except Exception as e:
                 print("ERROR, ", e)
 
 
 if __name__ == '__main__':
-    MobSoft()
+    Gyroscope()
