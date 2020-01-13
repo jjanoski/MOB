@@ -11,9 +11,9 @@ class MobSoft:
     def __init__(self):
         sp = serial.Serial('/dev/ttyUSB0', 9600)
         self.sensor = mpu6050(0x68)
-        self.pid_x = PID(1, 0.03, 0.2, setpoint=90)
+        self.pid_x = PID(0.5, 0, 0, setpoint=90) # P controler at 50% change the I and D later
         self.pid_x.sample_time = 0.10
-        self.pid_y = PID(1, 0.03, 0.2, setpoint=90)
+        self.pid_y = PID(0.5, 0, 0, setpoint=90) # P controller at 50% change the I and D later
         self.pid_y.sample_time = 0.10
         self.time = int(round(time() * 1000))
         self.run(sp)
