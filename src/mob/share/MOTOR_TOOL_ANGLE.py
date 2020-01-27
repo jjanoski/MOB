@@ -52,7 +52,7 @@ while True:
             sp.write('#14 P1500 #15 P1500 T1000 \r')
             sleep(2)
             print('setting arms to inital')
-            sp.write('#26 P1500 #27 P1640 #28 P1500 #29 P1600 #30 P1500 #31 P1500 T1000 \r')
+            sp.write('#26 P1500 #27 P1700 #28 P1500 #29 P1600 #30 P1500 #31 P1500 T1000 \r')
             sleep(2)
             print('Finished')
             break

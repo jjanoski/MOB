@@ -3,3 +3,4 @@ RPi.GPIO
 pyserial
 smbus
 simple-pid
+matplotlib
