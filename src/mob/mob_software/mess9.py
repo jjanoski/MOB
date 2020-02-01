@@ -3,7 +3,6 @@ import smbus
 import serial
 import sys
 import math
-import matplotlib.pyplot as plt
 from time import sleep, time
 from simple_pid import PID
 
@@ -39,6 +38,7 @@ class MobSoft:
         self.GYRO_YOUT_H    = 0x45
         self.GYRO_ZOUT_H    = 0x47
         self.bus = smbus.SMBus(1)  # or bus = smbus.SMBus(0) for older version boards
+       
         # Run main function
         self.run(sp)
 
@@ -124,7 +124,7 @@ class MobSoft:
                 command = '#16 P1500 #17 P1600 #18 P1500 #19 P1700 #20 P1600 T400 \r'
                 ser.write(command.encode())
                 ser.flush()
-
+            
     def run(self, sp):
         # init position of motors
         self.mpu_init()
@@ -149,9 +149,6 @@ class MobSoft:
         #self.pid_right_x.output_limits = (0,90)
         #self.pid_right_y.output_limits = (0,90)
         
-        # PLOT STUFF
-        fig, ax = plt.subplots()
-                
         while True:
             try:
                 #Time calc
@@ -218,28 +215,22 @@ class MobSoft:
                 pry, iry, dry = self.pid_right_y.components
                 
                 # print every second
-                print("Rotations")
-                print("X Rotation: "+str(actual_angle_x))
-                print("Y Rotation: "+str(actual_angle_y))
-                print("Diff")
-                print("Difference in x: "+str(diff_x))
-                print("Difference in y: "+str(diff_y))
-                print("PID ouputs for right leg")
-                print("px = "+str(plx)+" ix = "+str(ilx)+" dx = "+str(dlx))
-                print("py = "+str(ply)+" iy = "+str(ily)+" dy = "+str(dly))
-                print("PID X    : "+str(right_output_x))
-                print("PID Y    : "+str(right_output_y))
-                print("PID ouputs for left leg")
-                print("px = "+str(prx)+" ix = "+str(irx)+" dx = "+str(drx))
-                print("py = "+str(pry)+" iy = "+str(iry)+" dy = "+str(dry))
-                print("PID X    : "+str(left_output_x))
-                print("PID Y    : "+str(left_output_y))
-                
-                # PLOT STUFF
-                #ax.plot(plx , time_current)
-                #ax.set(xlabel='time (s)', ylabel='Propotional (P)', title='Proportional of x')
-                #ax.grid()
-                #plt.show()
+                #print("Rotations")
+                #print("X Rotation: "+str(actual_angle_x))
+                #print("Y Rotation: "+str(actual_angle_y))
+                #print("Diff")
+                #print("Difference in x: "+str(diff_x))
+                #print("Difference in y: "+str(diff_y))
+                #print("PID ouputs for right leg")
+                #print("px = "+str(plx)+" ix = "+str(ilx)+" dx = "+str(dlx))
+                #print("py = "+str(ply)+" iy = "+str(ily)+" dy = "+str(dly))
+                #print("PID X    : "+str(right_output_x))
+                #print("PID Y    : "+str(right_output_y))
+                #print("PID ouputs for left leg")
+                #print("px = "+str(prx)+" ix = "+str(irx)+" dx = "+str(drx))
+                #print("py = "+str(pry)+" iy = "+str(iry)+" dy = "+str(dry))
+                #print("PID X    : "+str(left_output_x))
+                #print("PID Y    : "+str(left_output_y))
                 
                 # Uncomment sleep to debug
                 #sleep(1)      
