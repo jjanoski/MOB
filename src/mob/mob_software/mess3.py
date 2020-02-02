@@ -23,7 +23,7 @@ class MobSoft:
         self.left_thigh    = PID(0.99, 0.0, 0.90, setpoint= 90) # 22
         self.left_knee     = PID(0.99, 0.0, 0.90, setpoint=100) # 23
         self.left_ankle    = PID(0.99, 0.0, 0.90, setpoint=100) # 24
-        self.left_foot     = PID(0.99, 0.0, 0.90, setpoint=100) # 25
+        self.left_foot     = PID(0.99, 0.0, 0.90, setpoint=110) # 25
         # PID Right Side
         self.right_shoulder = PID(0.99, 0.0, 0.90, setpoint=90) # 26
         self.right_elbow    = PID(0.99, 0.0, 0.90, setpoint=120) # 27
@@ -104,35 +104,27 @@ class MobSoft:
         else:
             print("Out of Bounds")
             
-    def left_leg_control(self, ser, x, y):
-        if 98 < x < 120 or 70 < y < 100:
+    def left_leg_control(self, ser, x, y, t):
+        if 100 <= x < 120 or 70 < y < 100:
             x = int(x * 11.11 + 501)
             y = int(y * 11.11 + 501)
             #print("x = "+str(x))
             #print("y = "+str(y))
             if 1590 < x < 2000 or 499 < y < 2501:
-                command = '#21 P'+str(x)+' #22 P'+str(y)+' T400 \r'
+                command = '#21 P'+str(x)+' #22 P'+str(y)+' T'+str(t)+' \r'
                 #print(command)
                 ser.write(command.encode())
                 ser.flush()
-        else:   
-                command = '#21 P1600 #22 P1500 #23 P1600 #24 P1600 #25 P1750 T400 \r'
-                ser.write(command.encode())
-                ser.flush()
 
-    def right_leg_control(self, ser, x, y):
+    def right_leg_control(self, ser, x, y, t):
         if 80 < x < 95 or 70 < y < 100:
             x = int(x * 11.11 + 501)
             y = int(y * 11.11 + 501)
             #print("x = "+str(x))
             #print("y = "+str(y))
             if 499 < x < 1580 or 499 < y < 2501:
-                command = '#16 P'+str(x)+' #17 P'+str(y)+' T400 \r'
+                command = '#16 P'+str(x)+' #17 P'+str(y)+' T'+str(t)+' \r'
                 #print(command)
-                ser.write(command.encode())
-                ser.flush()
-        else:   
-                command = '#16 P1500 #17 P1600 #18 P1500 #19 P1700 #20 P1600 T400 \r'
                 ser.write(command.encode())
                 ser.flush()
             
@@ -252,23 +244,38 @@ class MobSoft:
                 actual_angle_x = int(self.get_x_rotation(Ax, Ay, Az))
                 actual_angle_y = int(self.get_y_rotation(Ax, Ay, Az))
                 
-                # Difference
-                diff_x = set_angle_x - actual_angle_x
-                diff_y = set_angle_y - actual_angle_y
+                # Range Control
+                if -5 < actual_angle_x < 5:
+                    actual_angle_x = 0
+                else:
+                    actual_angle_x = actual_angle_x
+                    
+                if -5 < actual_angle_y <= 5:
+                    actual_angle_y = 0
+                else:
+                    actual_angle_y = actual_angle_y
+                    
+                print("angle x = "+str(actual_angle_x))
+                print("angle y = "+str(actual_angle_y))
 
                 # PID right leg
-                right_output_x = int(self.right_hip(-diff_x)) # feed x error into the pid controller
+                right_output_x = int(self.right_hip(right_hip_init)) # feed x error into the pid controller
                 #self.pid_right_x.setpoint = 90 
-                right_output_y = int(self.right_thigh(diff_y)) # feed y error into the pid controller
-                #self.pid_right_y.setpoint = 90          
-                self.right_leg_control(sp, right_output_x, right_output_y)
+                right_output_y = int(self.right_thigh(right_thigh_init)) # feed y error into the pid controller
+                self.right_leg_control(sp, right_output_x, right_output_y, 400)
+                # update the inputs
+                right_hip_init = actual_angle_x
+                right_thigh_init = actual_angle_y
                 
                 # PID left leg
-                left_output_x = int(self.left_hip(-diff_x)) # feed x error into the pid controller
+                left_output_x = int(self.left_hip(left_hip_init)) # feed x error into the pid controller
                 #self.pid_left_x.setpoint = 100 
-                left_output_y = int(self.left_thigh(-diff_y)) # feed y error into the pid controller
+                left_output_y = int(self.left_thigh(left_thigh_init)) # feed y error into the pid controller
                 #self.pid_left_y.setpoint = 90          
-                self.left_leg_control(sp, left_output_x, left_output_y)
+                self.left_leg_control(sp, left_output_x, left_output_y, 400)
+                # update the inputs
+                left_hip_init = -actual_angle_x
+                left_thigh_init = -actual_angle_y
                 
                 # PID RIGHT LEG pid variables
                 plx, ilx, dlx = self.left_hip.components
@@ -294,47 +301,37 @@ class MobSoft:
                 #print("py = "+str(pry)+" iy = "+str(iry)+" dy = "+str(dry))
                 #print("PID X    : "+str(left_output_x))
                 #print("PID Y    : "+str(left_output_y))
-                # Other PIDS
+                
+                # Head PIDS
                 head_out = self.head(head_init) #14
                 self.angle_command(sp, 14, head_out)
-                
                 cam_out  = self.cam(cam_init)   #15
                 self.angle_command(sp, 15, cam_out)
                 
                 # PID Left Side
                 left_shoulder_out = self.left_shoulder(left_shoulder_init) # 29
                 self.angle_command(sp, 29, left_shoulder_out)
-                
                 left_elbow_out = self.left_elbow(left_elbow_init) # 30
                 self.angle_command(sp, 30, left_elbow_out)
-                
                 left_hand_out  = self.left_hand(left_hand_init)   # 31
                 self.angle_command(sp, 31, left_hand_out)
-                
                 left_knee_out  = self.left_knee(left_knee_init)   # 23
                 self.angle_command(sp, 23, left_knee_out)
-                
                 left_ankle_out = self.left_ankle(left_ankle_init) # 24
                 self.angle_command(sp, 24, left_ankle_out)
-                
                 left_foot_out  = self.left_foot(left_foot_init)   # 25
                 self.angle_command(sp, 25, left_foot_out)
                 # PID Right Side
                 right_shoulder_out = self.right_shoulder(right_shoulder_init) # 26
                 self.angle_command(sp, 26, right_shoulder_out)
-                
                 right_elbow_out = self.right_elbow(right_elbow_init) # 27
                 self.angle_command(sp, 27, right_elbow_out)
-                
                 right_hand_out  = self.right_hand(right_hand_init)   # 28
                 self.angle_command(sp, 28, right_hand_out)
-                
                 right_knee_out  = self.right_knee(right_knee_init)   # 18
                 self.angle_command(sp, 18, right_knee_out)
-                
                 right_ankle_out = self.right_ankle(right_ankle_init) # 19
                 self.angle_command(sp, 19, right_ankle_out)
-                
                 right_foot_out  = self.right_foot(right_foot_init)   # 20
                 self.angle_command(sp, 20, right_foot_out)
                 
@@ -367,9 +364,9 @@ class MobSoft:
                 ax4.set_xlim(left= max(0, i-10), right=i+10)
                 ax5.set_xlim(left= max(0, i-10), right=i+10)
                 ax6.set_xlim(left= max(0, i-10), right=i+10)
-                #sleep(0.1)
+                sleep(0.1)
                 i = i+1
-
+                
                 # Uncomment sleep to debug
                 #sleep(1)      
             except Exception as e:
