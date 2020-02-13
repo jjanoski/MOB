@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from time import sleep, time
 from simple_pid import PID
 
+# start here tomorrow
 
 class MobSoft:
     def __init__(self):
@@ -23,7 +24,7 @@ class MobSoft:
         self.left_thigh    = PID(0.99, 0.0, 0.90, setpoint= 90) # 22
         self.left_knee     = PID(0.99, 0.0, 0.90, setpoint=100) # 23
         self.left_ankle    = PID(0.99, 0.0, 0.90, setpoint=100) # 24
-        self.left_foot     = PID(0.99, 0.0, 0.90, setpoint=110) # 25
+        self.left_foot     = PID(0.99, 0.0, 0.90, setpoint= 90) # 25
         # PID Right Side
         self.right_shoulder = PID(0.99, 0.0, 0.90, setpoint=90) # 26
         self.right_elbow    = PID(0.99, 0.0, 0.90, setpoint=120) # 27
@@ -127,6 +128,73 @@ class MobSoft:
             ser.flush()
         else:
             print("Out of Bounds")
+    
+    def angle_command_multiple(self,ser,
+                    head = 14, #14
+                    cam  = 15, # 15
+                    left_shoulder  = 29, # 29
+                    left_elbow     = 30, # 30
+                    left_hand      = 31, # 31
+                    left_hip       = 21, # 21
+                    left_thigh     = 22, # 22
+                    left_knee      = 23, # 23
+                    left_ankle     = 24, # 24
+                    left_foot      = 25, # 25
+                    right_shoulder = 26, # 26
+                    right_elbow    = 27, # 27
+                    right_hand     = 28, # 28
+                    right_hip      = 16, # 16
+                    right_thigh    = 17, # 17
+                    right_knee     = 18, # 18
+                    right_ankle    = 19, # 19
+                    right_foot     = 20, # 20
+                    angle_head           = 14, #14
+                    angle_cam            = 15, # 15
+                    angle_left_shoulder  = 29, # 29
+                    angle_left_elbow     = 30, # 30
+                    angle_left_hand      = 31, # 31
+                    angle_left_hip       = 21, # 21
+                    angle_left_thigh     = 22, # 22
+                    angle_left_knee      = 23, # 23
+                    angle_left_ankle     = 24, # 24
+                    angle_left_foot      = 25, # 25
+                    angle_right_shoulder = 26, # 26
+                    angle_right_elbow    = 27, # 27
+                    angle_right_hand     = 28, # 28
+                    angle_right_hip      = 16, # 16
+                    angle_right_thigh    = 17, # 17
+                    angle_right_knee     = 18, # 18
+                    angle_right_ankle    = 19, # 19
+                    angle_right_foot     = 20, # 20
+                    ):
+        """ Send angle command to the robot motors"""
+        set_head = int(angle_head * 11.11 + 501)
+        set_cam = int(angle_cam * 11.11 + 501)
+        set_l_shoulder = int(angle_left_shoulder * 11.11 + 501)
+        set_l_elbow = int(angle_left_elbow * 11.11 + 501)
+        set_l_hand = int(angle_left_hand * 11.11 + 501)
+        set_l_hip = int(angle_left_hip * 11.11 + 501)
+        set_l_thigh = int(angle_left_thigh * 11.11 + 501)
+        set_l_knee = int(angle_left_knee * 11.11 + 501)
+        set_l_ankle = int(angle_left_ankle * 11.11 + 501)
+        set_l_foot = int(angle_left_foot * 11.11 + 501)
+        set_r_shoulder = int(angle_right_shoulder * 11.11 + 501)
+        set_r_elbow = int(angle_right_elbow * 11.11 + 501)
+        set_r_hand = int(angle_right_hand * 11.11 + 501)
+        set_r_hip = int(angle_right_hip * 11.11 + 501)
+        set_r_thigh = int(angle_right_thigh * 11.11 + 501)
+        set_r_knee = int(angle_right_knee * 11.11 + 501)
+        set_r_ankle = int(angle_right_ankle * 11.11 + 501)
+        set_r_foot = int(angle_right_foot * 11.11 + 501)
+        
+        #print(str(set_value))
+        if 499 < set_head < 2501 and 499 < set_cam < 2501 and 499 < set_l_shoulder < 2501 and 499 < set_l_elbow < 2501 and 499 < set_l_hand < 2501 and 499 < set_l_hip < 2501 and 499 < set_l_thigh < 2501 and 499 < set_l_knee < 2501 and 499 < set_l_ankle < 2501 and 499 < set_l_thigh < 2501 and 499 < set_l_knee < 2501 and 499 < set_l_ankle < 2501 and 499 < set_l_foot < 2501 and 499 < set_r_shoulder < 2501 and 499 < set_r_elbow < 2501 and 499 < set_r_hand < 2501 and 499 < set_r_hip < 2501 and 499 < set_r_thigh < 2501 and 499 < set_r_knee < 2501 and 499 < set_r_ankle < 2501 and 499 < set_r_foot < 2501 :
+            command = '#'+str(head)+' P'+str(set_head)+' #'+str(cam)+' P'+str(set_cam)+' #'+str(left_shoulder)+' P'+str(set_l_shoulder)+' #'+str(left_elbow)+' P'+str(set_l_elbow)+' #'+str(left_hip)+' P'+str(set_l_hip)+' #'+str(left_thigh)+' P'+str(set_l_thigh)+' #'+str(left_knee)+' P'+str(set_l_knee)+' #'+str(left_ankle)+' P'+str(set_l_ankle)+' #'+str(left_foot)+' P'+str(set_l_foot)+' #'+str(right_shoulder)+' P'+str(set_r_shoulder)+' #'+str(right_elbow)+' P'+str(set_r_elbow)+' #'+str(right_hand)+' P'+str(set_r_hand)+' #'+str(right_hip)+' P'+str(set_r_hip)+' #'+str(right_thigh)+' P'+str(set_r_thigh)+' #'+str(right_knee)+' P'+str(set_r_knee)+' #'+str(right_ankle)+' P'+str(set_r_ankle)+' #'+str(right_foot)+' P'+str(set_r_foot)+' T1000 \r'
+            print(command)
+            ser.write(command.encode())
+            #ser.flush()
+        else:
+            print("Out of Bounds")
             
     def left_leg_control(self, ser, x, y, t):
         if 100 <= x < 120 or 70 < y < 100:
@@ -153,58 +221,45 @@ class MobSoft:
                 #ser.flush()
         
     def stand(self, sp, angle_x, angle_y):
-        #self.right_thigh.setpoint = 100
         # PID right leg
-        right_output_x = int(self.right_hip(self.right_hip_init)) # feed x error into the pid controller
-        #self.pid_right_x.setpoint = 90 
-        right_output_y = int(self.right_thigh(self.right_thigh_init)) # feed y error into the pid controller
-        self.right_leg_control(sp, right_output_x, right_output_y, 400)
+        right_hip_out = self.right_hip(self.right_hip_init) # feed x error into the pid controller
+        right_thigh_out = self.right_thigh(self.right_thigh_init) # feed y error into the pid controller
         # update the inputs
-        self.right_hip_init = angle_x
+        self.right_hip_init   = angle_x
         self.right_thigh_init = -angle_y
         
         # PID left leg
-        left_output_x = int(self.left_hip(self.left_hip_init)) # feed x error into the pid controller
-        #self.pid_left_x.setpoint = 100 
-        left_output_y = int(self.left_thigh(self.left_thigh_init)) # feed y error into the pid controller
-        #self.pid_left_y.setpoint = 90          
-        self.left_leg_control(sp, left_output_x, left_output_y, 400)
+        left_hip_out = self.left_hip(self.left_hip_init) # feed x error into the pid controller
+        left_thigh_out = self.left_thigh(self.left_thigh_init) # feed y error into the pid controller
         # update the inputs
-        self.left_hip_init = -angle_x
-        self.left_thigh_init = -angle_y
-                       
+        self.left_hip_init   = angle_x
+        self.left_thigh_init = angle_y
+
         # Head PIDS
         head_out = self.head(self.head_init) #14
-        self.angle_command(sp, 14, head_out)
         cam_out  = self.cam(self.cam_init)   #15
-        self.angle_command(sp, 15, cam_out)
         
         # PID Left Side
         left_shoulder_out = self.left_shoulder(self.left_shoulder_init) # 29
-        self.angle_command(sp, 29, left_shoulder_out)
         left_elbow_out = self.left_elbow(self.left_elbow_init) # 30
-        self.angle_command(sp, 30, left_elbow_out)
         left_hand_out  = self.left_hand(self.left_hand_init)   # 31
-        self.angle_command(sp, 31, left_hand_out)
+        #left_hip_out = self.left_hip(self.left_hip_init) # 21
+        #left_thigh_out = self.left_thigh(self.left_thigh_init) # 22
         left_knee_out  = self.left_knee(self.left_knee_init)   # 23
-        self.angle_command(sp, 23, left_knee_out)
         left_ankle_out = self.left_ankle(self.left_ankle_init) # 24
-        self.angle_command(sp, 24, left_ankle_out)
         left_foot_out  = self.left_foot(self.left_foot_init)   # 25
-        self.angle_command(sp, 25, left_foot_out)
+        
         # PID Right Side
         right_shoulder_out = self.right_shoulder(self.right_shoulder_init) # 26
-        self.angle_command(sp, 26, right_shoulder_out)
         right_elbow_out = self.right_elbow(self.right_elbow_init) # 27
-        self.angle_command(sp, 27, right_elbow_out)
         right_hand_out  = self.right_hand(self.right_hand_init)   # 28
-        self.angle_command(sp, 28, right_hand_out)
+        #right_hip_out = self.right_hip(self.right_hip_init) # 16
+        #right_thigh_out = self.right_thigh(self.right_thigh_init) # 17
         right_knee_out  = self.right_knee(self.right_knee_init)   # 18
-        self.angle_command(sp, 18, right_knee_out)
         right_ankle_out = self.right_ankle(self.right_ankle_init) # 19
-        self.angle_command(sp, 19, right_ankle_out)
         right_foot_out  = self.right_foot(self.right_foot_init)   # 20
-        self.angle_command(sp, 20, right_foot_out)
+        self.angle_command_multiple(sp, 14, 15, 29, 30,31,23,22,21,24,25,26,27,28,16,17,18,19,20, head_out, cam_out, left_shoulder_out, left_elbow_out, left_hand_out, left_hip_out, left_thigh_out, left_knee_out, left_ankle_out, left_foot_out, right_shoulder_out, right_elbow_out, right_hand_out, right_hip_out, right_thigh_out, right_knee_out, right_ankle_out, right_foot_out,)
+
     
     def stage_one(self, sp, angle_x, angle_y):
         #self.right_thigh.setpoint = 150
@@ -304,7 +359,7 @@ class MobSoft:
         actual_angle_x = 0
 
         # SetMotors to initial position
-        sp.write('#14 P1500 #15 P1500 #16 P1500 #17 P1600 #18 P1500 #19 P1700 #20 P1600 #21 P1600 #22 P1500 #23 P1600 #24 P1600 #25 P1750 #26 P1500 #27 P1700 #28 P1500 #29 P1600 #30 P1500 #31 P1500 T1000 \r'.encode())
+        #sp.write('#14 P1500 #15 P1500 #16 P1500 #17 P1600 #18 P1500 #19 P1700 #20 P1600 #21 P1600 #22 P1500 #23 P1600 #24 P1600 #25 P1750 #26 P1500 #27 P1700 #28 P1500 #29 P1600 #30 P1500 #31 P1500 T1000 \r'.encode())
                 
         # Init plot
         fig = plt.figure(figsize=(8,11))
@@ -354,6 +409,7 @@ class MobSoft:
                 # Range Control
                 if -5 < actual_angle_x < 5:
                     actual_angle_x = 0
+                    
                 else:
                     actual_angle_x = actual_angle_x
                     
@@ -364,9 +420,7 @@ class MobSoft:
                     
                 print("angle x = "+str(actual_angle_x))
                 print("angle y = "+str(actual_angle_y))
-                
-                actual_angle_x = 0
-                actual_angle_y = 0
+
                 self.stand(sp, actual_angle_x, actual_angle_y)
                 #self.stage_one(sp, actual_angle_x, actual_angle_y)
                 # PID RIGHT LEG pid variables

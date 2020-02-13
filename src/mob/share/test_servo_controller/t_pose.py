@@ -18,19 +18,19 @@ right     | left
         
 print('wave 1')
 #stage 1
-sp.write('#26 P1500 #27 P1640 #28 P1500 T1000 \r')
-sp.write('#29 P1600 #30 P1600 #31 P1500 T1000 \r')
+sp.write('#26 P1500 #27 P1640 #28 P1500 T2000 \r')
+sp.write('#29 P1600 #30 P1600 #31 P1500 T2000 \r')
 sleep(2)
 
 print('wave 2')
 #stage 2
-sp.write('#27 P2500 #30 P700 T1000 \r')
+sp.write('#27 P2500 #30 P700 T2000 \r')
 sleep(3)
 
 print('wave 3')
 #stage 3
-sp.write('#26 P1500 #27 P1600 #28 P1500 T1000 \r')
-sp.write('#29 P1600 #30 P1600 #31 P1500 T1000 \r')
+sp.write('#26 P1500 #27 P1600 #28 P1500 T2000 \r')
+sp.write('#29 P1600 #30 P1600 #31 P1500 T2000 \r')
 sleep(2)
 
 sp.close()

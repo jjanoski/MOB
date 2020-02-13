@@ -45,14 +45,14 @@ while True:
 
         if joint == 32:
             print('close') 
-            print('setting feet to initial')
+            print('setting legs to initial')
             sp.write('#16 P1500 #17 P1600 #18 P1500 #19 P1700 #20 P1600 #21 P1600 #22 P1500 #23 P1600 #24 P1600 #25 P1750 T1000 \r')
             sleep(2)
             print('setting head to initial')
-            sp.write('#14 P1500 #15 P1500 T1000 \r')
+            sp.write('#14 P1500 #15 P1500 T500 \r')
             sleep(2)
             print('setting arms to inital')
-            sp.write('#26 P1500 #27 P1700 #28 P1500 #29 P1600 #30 P1500 #31 P1500 T1000 \r')
+            sp.write('#26 P1500 #27 P1700 #28 P1500 #29 P1600 #30 P1500 #31 P1500 T500 \r')
             sleep(2)
             print('Finished')
             break

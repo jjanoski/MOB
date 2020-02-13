@@ -4,3 +4,4 @@ pyserial
 smbus
 simple-pid
 matplotlib
+numpy

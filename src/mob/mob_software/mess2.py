@@ -127,7 +127,7 @@ class MobSoft:
                 #print(command)
                 ser.write(command.encode())
                 ser.flush()
-            
+        
     def run(self, sp):
         # init position of motors
         self.mpu_init()
